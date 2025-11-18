@@ -1,0 +1,21 @@
+# Dependencias de Node (Frontend y Backend)
+/frontend/node_modules
+/backend/node_modules
+
+# Archivos de variables de entorno
+.env
+/frontend/.env
+/backend/.env
+
+# Logs y archivos de caché
+npm-debug.log
+yarn-error.log
+*.log
+
+# Archivos de build
+/frontend/dist
+
+# Archivos del sistema operativo
+.DS_Store
+backend/src/uploads
+backend/uploads

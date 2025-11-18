@@ -1,0 +1,44 @@
+/*
+ * Archivo: frontend/src/services/api.js
+ * (Configuración de Axios e Interceptores - SIN JSX)
+ */
+import axios from 'axios';
+
+const apiClient = axios.create({
+  baseURL: 'http://localhost:3000/api',
+});
+
+// 1. Interceptor de SOLICITUD
+// Adjunta el token a cada petición saliente
+apiClient.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+// 2. Interceptor de RESPUESTA
+// Maneja errores de sesión (Token vencido)
+apiClient.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    // Si el error es 401 (No autorizado) o 403 (Prohibido)
+    if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+      
+      // Evitar bucle infinito si ya estamos en login
+      if (!window.location.pathname.includes('/login')) {
+        // localStorage.removeItem('authToken'); // Opcional: borrar token
+        window.location.href = '/login';
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
+export default apiClient;

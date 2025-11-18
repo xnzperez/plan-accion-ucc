@@ -1,0 +1,115 @@
+/* Variables de diseño */
+:root {
+  --sidebar-width: 240px;
+  --header-height: 60px;
+  --primary-color: #057cd1;
+  --bg-color: #f3f4f6;
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.layout-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: #1f2937;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* --- CONTENIDO PRINCIPAL --- */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  /* En PC, empujamos el contenido a la derecha */
+  margin-left: var(--sidebar-width);
+  transition: margin-left 0.3s ease-in-out;
+  width: 100%;
+}
+
+/* --- BOTÓN HAMBURGUESA (Móvil) --- */
+.mobile-menu-btn {
+  display: none; /* Oculto en PC */
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 1001;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  
+  /* --- NUEVO: Transición suave --- */
+  transition: opacity 0.3s ease, transform 0.3s ease; 
+}
+
+/* --- NUEVO: Estado cuando se hace Scroll --- */
+.mobile-menu-btn.scrolled {
+  opacity: 0.4; /* Se vuelve 40% visible (transparente) */
+  transform: scale(0.9); /* Se hace un poquito más pequeño */
+}
+
+/* --- NUEVO: Al pasar el dedo o mouse, vuelve a ser visible --- */
+.mobile-menu-btn:hover, 
+.mobile-menu-btn:active {
+  opacity: 1 !important; /* Vuelve al 100% */
+  transform: scale(1);
+}
+
+/* --- BACKDROP (Fondo oscuro cuando abres menú en móvil) --- */
+.sidebar-backdrop {
+  display: none;
+}
+
+/* =========================================
+   DISEÑO RESPONSIVO (CELULARES / TABLETS)
+   ========================================= */
+@media (max-width: 768px) {
+  /* El Sidebar se esconde a la izquierda */
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  /* Si tiene la clase 'open', se muestra */
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* El contenido ocupa todo el ancho (ya no hay margen) */
+  .main-content {
+    margin-left: 0;
+  }
+
+  /* Mostramos el botón de menú */
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  /* Mostramos el fondo oscuro cuando el menú está abierto */
+  .sidebar-backdrop.visible {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 900; /* Debajo del sidebar, encima del contenido */
+  }
+}
