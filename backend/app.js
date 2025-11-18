@@ -19,12 +19,14 @@ const evidenceRoutes = require('./src/routes/evidenceRoutes');
 const processRoutes = require('./src/routes/processRoutes');
 const statsRoutes = require('./src/routes/statsRoutes'); // <-- NUEVO
 const reportRoutes = require('./src/routes/reportRoutes'); // <-- IMPORTAR
+const compression = require('compression');
 
 const app = express();
 const port = 3000;
 
 // --- Configuración Global ---
 app.use(cors());
+app.use(compression());
 app.use(express.json());
 
 // Servir archivos estáticos (para las evidencias)

@@ -16,11 +16,9 @@ import apiClient from '../services/api';
 
 // --- RECURSOS ---
 
-const LOGO_URL =
-  'https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/U._Cooperativa_de_Colombia_logo.svg/2276px-U._Cooperativa_de_Colombia_logo.svg.png';
+const LOGO_URL = 'logo_ucc.webp';
 
-const CAMPUS_BG =
-  'https://www.chicanoticias.com/wp-content/uploads/2025/06/Imagen-de-referencia-2025-06-13T133654.510.png';
+const CAMPUS_BG = 'UCC_Campus.webp';
 
 // --- ESTILOS ---
 
