@@ -50,24 +50,21 @@ const styles = {
 
 function FilePreview({ url, fileName }) {
   const [showPreview, setShowPreview] = useState(false);
-
-  // Detectar extensión
+  
   const extension = fileName?.split('.').pop().toLowerCase();
   const isImage = ['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(extension);
   const isPdf = extension === 'pdf';
-
-  const fullUrl = `http://localhost:3000/${url}`;
+  
+  // --- CORRECCIÓN: Usar el dominio de la aplicación desplegada ---
+  // window.location.origin será "https://tu-app.run-on-seenode.com"
+  const fullUrl = `${window.location.origin}/${url}`; 
+  // ----------------------------------------------------------------
 
   if (!isImage && !isPdf) {
     // Si es Word, Excel, etc., solo mostramos el link de descarga
     return (
       <div style={{ marginBottom: '5px' }}>
-        <a
-          href={fullUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: '#057CD1', fontWeight: '500' }}
-        >
+        <a href={fullUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#057CD1', fontWeight: '500' }}>
           📄 {fileName}
         </a>
       </div>
