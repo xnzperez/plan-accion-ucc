@@ -30,7 +30,6 @@ function AdminDashboard() {
   const fetchPendingActions = async () => {
     setIsLoading(true);
     try {
-      // Esta ruta del backend ya está refactorizada
       const response = await apiClient.get('/actions/pending');
       setPendingActions(response.data);
     } catch (error) {
