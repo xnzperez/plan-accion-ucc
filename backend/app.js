@@ -1,55 +1,67 @@
 /*
  * Archivo: backend/app.js
- * (Versión Completa - Refactorizada)
+ * (Versión Final - Compatible con Express 5 y Producción)
  */
-
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const userRoutes = require('./src/routes/userRoutes');
+const compression = require('compression');
 
 // --- MIDDLEWARE ---
 const { authMiddleware } = require('./src/middleware/authMiddleware');
 
-// --- RUTAS ---
+// --- IMPORTACIÓN DE RUTAS ---
 const authRoutes = require('./src/routes/authRoutes');
-const goalRoutes = require('./src/routes/goalRoutes'); // <-- Importante
+const goalRoutes = require('./src/routes/goalRoutes');
 const actionRoutes = require('./src/routes/actionRoutes');
 const evidenceRoutes = require('./src/routes/evidenceRoutes');
 const processRoutes = require('./src/routes/processRoutes');
-const statsRoutes = require('./src/routes/statsRoutes'); // <-- NUEVO
-const reportRoutes = require('./src/routes/reportRoutes'); // <-- IMPORTAR
-const compression = require('compression');
+const userRoutes = require('./src/routes/userRoutes');
+const statsRoutes = require('./src/routes/statsRoutes');
+const reportRoutes = require('./src/routes/reportRoutes');
 
 const app = express();
-const port = 3000;
+// Usar puerto del entorno (para Seenode) o 3000 por defecto
+const port = process.env.PORT || 3000;
 
-// --- Configuración Global ---
+// --- CONFIGURACIÓN GLOBAL ---
 app.use(cors());
-app.use(compression());
+app.use(compression()); // Optimización
 app.use(express.json());
 
-// Servir archivos estáticos (para las evidencias)
+// Servir archivos estáticos (cargas de evidencias)
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// --- Definición de Rutas ---
+// --- DEFINICIÓN DE API ---
 
-// Rutas Públicas
+// 1. Rutas Públicas
 app.use('/api/auth', authRoutes);
 
-// --- Rutas Protegidas ---
-// Todas las rutas de abajo requieren token
-app.use(authMiddleware);
+// 2. Rutas Protegidas (Middleware Global para /api/)
+// Nota: Esto protege todo lo que sigue bajo /api/
+app.use('/api/goals', authMiddleware, goalRoutes);
+app.use('/api/actions', authMiddleware, actionRoutes);
+app.use('/api/evidences', authMiddleware, evidenceRoutes);
+app.use('/api/processes', authMiddleware, processRoutes);
+app.use('/api/users', authMiddleware, userRoutes);
+app.use('/api/stats', authMiddleware, statsRoutes);
+app.use('/api/reports', authMiddleware, reportRoutes);
 
-app.use('/api/goals', goalRoutes); // <-- ¡Esta línea habilita /api/goals!
-app.use('/api/actions', actionRoutes);
-app.use('/api/evidences', evidenceRoutes);
-app.use('/api/processes', processRoutes);
-app.use('/api/users', userRoutes); // Gestión de usuarios (solo Admin)
-app.use('/api/stats', statsRoutes); // <-- NUEVO
-app.use('/api/reports', reportRoutes); // <-- USAR
+// --- SERVIR FRONTEND EN PRODUCCIÓN ---
+// Esto permite que Node.js sirva la React App construida
+const frontendBuildPath = path.join(__dirname, '..', 'frontend', 'dist');
 
-// --- Iniciar Servidor ---
+// Servir los archivos estáticos (JS, CSS, Imágenes del build)
+app.use(express.static(frontendBuildPath));
+
+// Manejo del "Catch-All" para SPA (Single Page Application)
+// CAMBIO IMPORTANTE: Usamos una Expresión Regular /.*/ en lugar de '*' 
+// para compatibilidad con Express 5.
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.join(frontendBuildPath, 'index.html'));
+});
+
+// --- INICIAR SERVIDOR ---
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);
 });
