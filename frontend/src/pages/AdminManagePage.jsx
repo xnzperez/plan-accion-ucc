@@ -153,7 +153,7 @@ function AdminManagePage() {
     }
   };
 
-  // --- NUEVO: Eliminar Meta ---
+  // --- Eliminar Meta ---
   const handleDeleteGoal = async (goalId) => {
     const result = await Swal.fire({
       title: '¿Eliminar Meta?',
@@ -176,7 +176,7 @@ function AdminManagePage() {
     }
   };
 
-  // --- NUEVO: Eliminar Acción (Pasa al hijo) ---
+  // --- Eliminar Acción (Pasa al hijo) ---
   const handleDeleteAction = async (actionId) => {
     const result = await Swal.fire({
       title: '¿Eliminar Acción?',
