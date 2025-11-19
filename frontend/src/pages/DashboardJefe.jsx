@@ -104,7 +104,7 @@ function DashboardJefe() {
     if (dateType === 'start') {
       if (tempDate < getToday()) {
         toast.error('La fecha de inicio no puede ser pasada.');
-        // No bloqueamos, pero avisamos (o podrías hacer return para bloquear)
+        // No bloqueamos, pero avisamos 
       }
     }
 
