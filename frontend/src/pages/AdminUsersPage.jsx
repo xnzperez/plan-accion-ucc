@@ -137,7 +137,7 @@ function AdminUsersPage() {
     setIsAssignModalOpen(true);
   };
 
-  // --- MEJORA: SweetAlert para Bloquear/Activar ---
+  // --- SweetAlert para Bloquear/Activar ---
   const handleToggleStatus = async (userId, currentStatus) => {
     if (userId === currentUserId) return toast.error('No puedes bloquear tu propia cuenta.');
 
@@ -166,7 +166,7 @@ function AdminUsersPage() {
     }
   };
 
-  // --- MEJORA: SweetAlert para Desasignar ---
+  // --- SweetAlert para Desasignar ---
   const handleUnassignProcess = async (userId, processId, processName) => {
     const result = await Swal.fire({
       title: '¿Quitar proceso?',
@@ -189,7 +189,7 @@ function AdminUsersPage() {
     }
   };
 
-  // --- MEJORA: SweetAlert para Reset ---
+  // --- SweetAlert para Reset ---
   const handleResetAccess = async (userId, userName) => {
     if (userId === currentUserId) return toast.error('No puedes resetearte a ti mismo.');
 
@@ -208,7 +208,7 @@ function AdminUsersPage() {
         const response = await apiClient.post(`/users/${userId}/reset`);
         const code = response.data.activationCode;
 
-        // Mostrar código en un Modal de Éxito Bonito
+        // Mostrar código en un Modal de Éxito 
         Swal.fire({
           title: '¡Código Generado!',
           html: `
