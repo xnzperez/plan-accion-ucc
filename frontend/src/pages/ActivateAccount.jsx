@@ -10,7 +10,7 @@ import React, { useState, useEffect } from 'react';
 
 import { useNavigate, Link } from 'react-router-dom';
 
-import Swal from 'sweetalert2'; // <-- Importamos SweetAlert2
+import Swal from 'sweetalert2'; // 
 
 import apiClient from '../services/api';
 
@@ -198,7 +198,6 @@ function ActivateAccount() {
 
       navigate('/login');
     } catch (err) {
-      // --- ERROR (Aquí estaba el faltante) ---
 
       console.error(err);
 
