@@ -150,7 +150,6 @@ function ActionDetail({ action, onActionUpdate }) {
         </div>
       </div>
 
-      {/* --- BOTÓN MOVIDO AQUÍ (Arriba) --- */}
       <button onClick={handleSaveFields} style={styles.saveButton}>
         💾 Guardar Cambios Generales
       </button>
