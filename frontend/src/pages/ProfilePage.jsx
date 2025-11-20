@@ -168,7 +168,6 @@ function ProfilePage() {
               </button>
             </form>
           </div>
-
           <div style={styles.card}>
             <h3 style={styles.cardTitle}>Cambiar Contraseña</h3>
             <form onSubmit={handleChangePassword} style={styles.form}>
