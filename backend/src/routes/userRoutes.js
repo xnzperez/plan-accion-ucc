@@ -13,11 +13,8 @@ router.post('/:id/assign', checkRole(1), controller.assignProcess);
 
 // Desasignación (NUEVO)
 
-// ...
-// ...
 router.delete('/:id/processes/:processId', checkRole(1), controller.unassignProcess);
 
-// ESTA ES LA LÍNEA QUE FALTA O NO SE LEYÓ:
 router.post('/:id/reset', checkRole(1), controller.resetUserAccess);
 
 module.exports = router;
