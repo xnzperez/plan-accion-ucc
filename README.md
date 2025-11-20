@@ -82,14 +82,24 @@ plan-accion-ucc/
 └── README.md
 ```
 
-🔑 Credenciales de Acceso
--- Admin
+## 🚀 Despliegue (Demo en Vivo)
+
+La aplicación se encuentra desplegada y operativa en la nube a través de **Seenode**:
+
+🔗 **URL:** [https://web-vwzvr23lddvd.up-de-fra1-1.apps.run-on-seenode.com/]
+
+## 🔑 Credenciales de Acceso
+
+### Cuenta Administrador
+
 admin@ucc.edu.co
 
--- Jefes
+### Cuenta Jefes de Proceso
+
 analista.planeacion@ucc.edu.co
 analista.pye@ucc.edu.co
 analista.pye.dif@ucc.edu.co
 
-Contraseña para todas las cuentas:
+### Contraseña para todas las cuentas:
+
 Password123$
