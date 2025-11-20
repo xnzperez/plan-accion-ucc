@@ -169,5 +169,5 @@ module.exports = {
   createGoal,
   getGoalsByProcess,
   updateGoal,
-  deleteGoal, // <-- Exportar
+  deleteGoal, 
 };
