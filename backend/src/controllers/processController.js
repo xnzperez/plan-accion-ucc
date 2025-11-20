@@ -48,5 +48,5 @@ const createProcess = async (req, res) => {
 
 module.exports = {
   getAllProcesses,
-  createProcess, // <-- Exportamos la nueva función
+  createProcess, 
 };
