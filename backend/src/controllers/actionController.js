@@ -1,6 +1,6 @@
 /*
  * Archivo: backend/src/controllers/actionController.js
- * (VERSIÓN LIMPIA Y SANITIZADA - SIN CARACTERES OCULTOS)
+ * (VERSIÓN LIMPIA Y SANITIZADA )
  */
 const db = require('../db/index.js');
 
