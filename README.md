@@ -94,7 +94,7 @@ La aplicación se encuentra desplegada y operativa en la nube a través de **See
 
 admin@ucc.edu.co
 
-### Cuenta Jefes de Proceso
+### Cuentas Jefes de Proceso
 
 analista.planeacion@ucc.edu.co
 analista.pye@ucc.edu.co
