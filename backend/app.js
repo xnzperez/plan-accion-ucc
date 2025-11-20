@@ -1,6 +1,6 @@
 /*
  * Archivo: backend/app.js
- * (Versión Final - Corregida y Completa)
+ * (Versión Final)
  */
 const express = require('express');
 const cors = require('cors');
