@@ -4,11 +4,8 @@
  */
 
 import React, { useState, useEffect } from 'react';
-
 import { useNavigate, Link } from 'react-router-dom';
-
 import Swal from 'sweetalert2'; // 
-
 import apiClient from '../services/api';
 
 const styles = {
@@ -40,7 +37,6 @@ const styles = {
   },
 
   subtitle: { textAlign: 'center', marginBottom: '20px', color: '#6B7280', fontSize: '0.9rem' },
-
   input: {
     width: '100%',
     padding: '12px',
@@ -74,7 +70,6 @@ const styles = {
   },
 
   // Estilos de Validación
-
   reqList: {
     listStyle: 'none',
     padding: 0,
@@ -84,7 +79,6 @@ const styles = {
   },
 
   reqItem: { display: 'flex', alignItems: 'center', gap: '5px', marginBottom: '2px' },
-
   strengthBarContainer: {
     height: '4px',
     width: '100%',
@@ -107,7 +101,6 @@ function ActivateAccount() {
   });
 
   // Estados de Validación
-
   const [validations, setValidations] = useState({
     length: false,
     upper: false,
@@ -116,14 +109,12 @@ function ActivateAccount() {
   });
 
   const [passwordScore, setPasswordScore] = useState(0); // 0 a 4
-
   const navigate = useNavigate();
 
   // Analizar contraseña en tiempo real
 
   useEffect(() => {
     const pwd = formData.password;
-
     const checks = {
       length: pwd.length >= 8,
       upper: /[A-Z]/.test(pwd),
@@ -138,7 +129,6 @@ function ActivateAccount() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     // 1. Validar Seguridad antes de enviar
     if (passwordScore < 4) {
       return Swal.fire({
@@ -166,7 +156,6 @@ function ActivateAccount() {
       });
 
       // --- ÉXITO ---
-
       await Swal.fire({
         title: '¡Cuenta Activada!',
         text: 'Tu contraseña ha sido configurada exitosamente. Ahora puedes iniciar sesión.',
@@ -188,7 +177,6 @@ function ActivateAccount() {
   };
 
   // Helper para color de la barra
-
   const getBarColor = () => {
     if (passwordScore <= 1) return '#dc3545'; // Rojo
     if (passwordScore <= 3) return '#ffc107'; // Amarillo
