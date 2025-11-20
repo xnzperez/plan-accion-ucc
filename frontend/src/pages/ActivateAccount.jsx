@@ -1,9 +1,6 @@
 /*
-
  * Archivo: frontend/src/pages/ActivateAccount.jsx
-
  * (Versión Final - Con Validación de Contraseña y Alertas SweetAlert2)
-
  */
 
 import React, { useState, useEffect } from 'react';
@@ -129,34 +126,25 @@ function ActivateAccount() {
 
     const checks = {
       length: pwd.length >= 8,
-
       upper: /[A-Z]/.test(pwd),
-
       number: /[0-9]/.test(pwd),
-
       special: /[!@#$%^&*(),.?":{}|<>]/.test(pwd),
     };
 
     setValidations(checks);
-
     const score = Object.values(checks).filter(Boolean).length;
-
     setPasswordScore(score);
   }, [formData.password]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     // 1. Validar Seguridad antes de enviar
-
     if (passwordScore < 4) {
       return Swal.fire({
         title: 'Contraseña Débil',
-
         text: 'La contraseña no cumple con los requisitos de seguridad.',
-
         icon: 'warning',
-
         confirmButtonColor: '#057CD1',
       });
     }
@@ -164,11 +152,8 @@ function ActivateAccount() {
     if (formData.password !== formData.confirmPassword) {
       return Swal.fire({
         title: 'Error',
-
         text: 'Las contraseñas no coinciden.',
-
         icon: 'error',
-
         confirmButtonColor: '#057CD1',
       });
     }
@@ -176,9 +161,7 @@ function ActivateAccount() {
     try {
       await apiClient.post('/auth/activate', {
         email: formData.email,
-
         code: formData.code,
-
         password: formData.password,
       });
 
@@ -186,28 +169,19 @@ function ActivateAccount() {
 
       await Swal.fire({
         title: '¡Cuenta Activada!',
-
         text: 'Tu contraseña ha sido configurada exitosamente. Ahora puedes iniciar sesión.',
-
         icon: 'success',
-
         confirmButtonText: 'Ir al Login',
-
         confirmButtonColor: '#057CD1',
       });
 
       navigate('/login');
     } catch (err) {
-
       console.error(err);
-
       Swal.fire({
         title: 'Error de Activación',
-
         text: err.response?.data?.error || 'No se pudo activar la cuenta. Verifica el código.',
-
         icon: 'error',
-
         confirmButtonColor: '#dc3545',
       });
     }
@@ -217,9 +191,7 @@ function ActivateAccount() {
 
   const getBarColor = () => {
     if (passwordScore <= 1) return '#dc3545'; // Rojo
-
     if (passwordScore <= 3) return '#ffc107'; // Amarillo
-
     return '#28a745'; // Verde
   };
 
@@ -227,11 +199,9 @@ function ActivateAccount() {
     <div style={styles.container}>
       <form style={styles.card} onSubmit={handleSubmit}>
         <h2 style={styles.title}>Activar / Restablecer</h2>
-
         <p style={styles.subtitle}>
           Ingresa el código proporcionado por el administrador para configurar tu acceso.
         </p>
-
         <input
           placeholder="Correo Institucional"
           type="email"
@@ -240,7 +210,6 @@ function ActivateAccount() {
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
         />
-
         <input
           placeholder="Código de Activación (Ej. A1B2C3)"
           style={styles.input}
@@ -250,7 +219,6 @@ function ActivateAccount() {
         />
 
         {/* Input de Password con Validación Visual */}
-
         <input
           placeholder="Nueva Contraseña"
           type="password"
@@ -259,9 +227,7 @@ function ActivateAccount() {
           value={formData.password}
           onChange={(e) => setFormData({ ...formData, password: e.target.value })}
         />
-
         {/* Barra de Fuerza */}
-
         <div style={styles.strengthBarContainer}>
           <div
             style={{
@@ -273,25 +239,20 @@ function ActivateAccount() {
         </div>
 
         {/* Lista de Requisitos */}
-
         <ul style={styles.reqList}>
           <li style={{ ...styles.reqItem, color: validations.length ? '#16a34a' : '#9CA3AF' }}>
             {validations.length ? '✓' : '○'} Mínimo 8 caracteres
           </li>
-
           <li style={{ ...styles.reqItem, color: validations.upper ? '#16a34a' : '#9CA3AF' }}>
             {validations.upper ? '✓' : '○'} Al menos una mayúscula (A-Z)
           </li>
-
           <li style={{ ...styles.reqItem, color: validations.number ? '#16a34a' : '#9CA3AF' }}>
             {validations.number ? '✓' : '○'} Al menos un número (0-9)
           </li>
-
           <li style={{ ...styles.reqItem, color: validations.special ? '#16a34a' : '#9CA3AF' }}>
             {validations.special ? '✓' : '○'} Un carácter especial (!@#$...)
           </li>
         </ul>
-
         <input
           placeholder="Confirmar Contraseña"
           type="password"
@@ -300,21 +261,17 @@ function ActivateAccount() {
           value={formData.confirmPassword}
           onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
         />
-
         <button
           type="submit"
           style={{
             ...styles.button,
-
             backgroundColor: passwordScore === 4 ? '#057CD1' : '#9CA3AF',
-
             cursor: passwordScore === 4 ? 'pointer' : 'not-allowed',
           }}
           disabled={passwordScore < 4}
         >
           Activar y Definir Contraseña
         </button>
-
         <Link to="/login" style={styles.link}>
           Volver al Inicio de Sesión
         </Link>
