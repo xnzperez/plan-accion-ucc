@@ -125,9 +125,8 @@ function DashboardJefe() {
       const payload = {};
       if (dateType === 'start') payload.start_date = tempDate;
       else payload.end_date = tempDate;
-
       await apiClient.put(`/goals/${goalId}`, payload);
-
+      
       setGoals((prev) =>
         prev.map((g) => {
           if (g.id === goalId) {
@@ -136,7 +135,6 @@ function DashboardJefe() {
           return g;
         })
       );
-
       toast.success('Fecha actualizada');
       setEditingGoalDate(null);
     } catch (error) {
@@ -156,7 +154,6 @@ function DashboardJefe() {
 
   const handleActionSubmit = async (formData) => {
     if (!formData.description || !selectedGoalId) return toast.error('Datos incompletos.');
-
     try {
       await apiClient.post(`/goals/${selectedGoalId}/actions`, {
         description: formData.description,
@@ -182,7 +179,6 @@ function DashboardJefe() {
             const minStart = getToday();
             const minEnd = goal.start_date ? goal.start_date.substring(0, 10) : '';
             const maxEnd = goal.start_date ? getMaxEndDate(goal.start_date) : '';
-
             return (
               <div key={goal.id} className="card" style={styles.goalCard}>
                 <div style={styles.goalHeader}>
@@ -194,7 +190,6 @@ function DashboardJefe() {
                       <strong>Indicador:</strong> {goal.indicator}
                     </p>
                   )}
-
                   <div style={styles.dateRow}>
                     {/* Fecha Inicio */}
                     <div style={styles.dateItem}>
@@ -251,7 +246,6 @@ function DashboardJefe() {
                     </div>
                   </div>
                 </div>
-
                 <h3 style={styles.actionTitle}>Acciones Propuestas</h3>
                 <div style={styles.actionList}>
                   {goal.actions && goal.actions.length > 0 ? (
