@@ -112,7 +112,6 @@ function ActivateAccount() {
   const navigate = useNavigate();
 
   // Analizar contraseña en tiempo real
-
   useEffect(() => {
     const pwd = formData.password;
     const checks = {
