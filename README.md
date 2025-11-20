@@ -55,7 +55,7 @@ Sigue estos pasos para ejecutar el proyecto en tu máquina local:
     Ejecuta el script `backend/src/db/database_schema_seed.sql` en tu cliente PostgreSQL (pgAdmin) para crear las tablas y usuarios base.
 
 5.  **Ejecutar el proyecto:**
-    - **Backend:** `npm run dev` (en la carpeta backend).
+    - **Backend:** `node app.js` (en la carpeta backend).
     - **Frontend:** `npm run dev` (en la carpeta frontend).
 
 ---
