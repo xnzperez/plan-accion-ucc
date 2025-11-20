@@ -58,7 +58,6 @@ function DashboardJefe() {
     d.setMonth(d.getMonth() + 3); // +3 Meses
     return d.toISOString().split('T')[0];
   };
-  // -----------------------------------
 
   const fetchGoals = async () => {
     try {
@@ -107,7 +106,6 @@ function DashboardJefe() {
         // No bloqueamos, pero avisamos 
       }
     }
-
     if (dateType === 'end') {
       if (tempDate < currentStartDate) {
         setEditingGoalDate(null);
@@ -119,14 +117,12 @@ function DashboardJefe() {
         return toast.error('La fecha excede el límite de 1 trimestre (3 meses).');
       }
     }
-    // -----------------------------
 
     try {
       const payload = {};
       if (dateType === 'start') payload.start_date = tempDate;
       else payload.end_date = tempDate;
       await apiClient.put(`/goals/${goalId}`, payload);
-      
       setGoals((prev) =>
         prev.map((g) => {
           if (g.id === goalId) {
@@ -213,7 +209,6 @@ function DashboardJefe() {
                         </span>
                       )}
                     </div>
-
                     {/* Fecha Cierre */}
                     <div style={styles.dateItem}>
                       <span style={styles.dateLabel}>Cierre:</span>
@@ -265,7 +260,6 @@ function DashboardJefe() {
                     <p style={styles.noActions}>No hay acciones propuestas para esta meta.</p>
                   )}
                 </div>
-
                 <button onClick={() => handleOpenForm(goal.id)} style={styles.addButton}>
                   + Añadir Nueva Acción
                 </button>
@@ -274,7 +268,6 @@ function DashboardJefe() {
           })}
         </section>
       </main>
-
       {isFormVisible && (
         <ActionForm onClose={() => setIsFormVisible(false)} onActionSubmit={handleActionSubmit} />
       )}
