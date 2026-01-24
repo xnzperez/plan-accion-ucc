@@ -8,6 +8,8 @@ Desarrollado bajo arquitectura **PERN** (PostgreSQL, Express, React, Node.js) co
 
 ## 🚀 Stack Tecnológico
 
+**(SERVICIOS EN LA NUBE INHABILITADO)**
+
 - **Frontend:** React 18 (Vite), React Router, SweetAlert2, Recharts, React Hot Toast.
 - **Backend:** Node.js 20+, Express.js.
 - **Base de Datos:** PostgreSQL 15+ (Gestionada en la nube).
