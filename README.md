@@ -24,8 +24,7 @@ Sigue estos pasos para ejecutar el proyecto en tu máquina local:
 1.  **Clonar el repositorio:**
 
     ```bash
-    git clone [https://github.com/xnzperez/plan-accion-ucc.git](https://github.com/xnzperez/plan-accion-ucc.git)
-    cd plan-accion-ucc
+    git clone [https://github.com/xnzperez/plan-accion-ucc.git]
     ```
 
 2.  **Configurar Variables de Entorno:**
@@ -88,7 +87,8 @@ plan-accion-ucc/
 
 La aplicación se encuentra desplegada y operativa en la nube a través de **Seenode**:
 
-🔗 **URL:** [https://web-vwzvr23lddvd.up-de-fra1-1.apps.run-on-seenode.com/]
+🔗 **URL (Inhabilitada):** [https://web-vwzvr23lddvd.up-de-fra1-1.apps.run-on-seenode.com/]
+
 
 ## 🔑 Credenciales de Acceso
 
