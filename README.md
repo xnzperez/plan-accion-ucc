@@ -45,11 +45,11 @@ Sigue estos pasos para ejecutar el proyecto en tu máquina local:
     ```bash
     # Backend
     cd backend
-    npm install
+    pnpm install
 
     # Frontend
     cd ../frontend
-    npm install
+    pnpm install
     ```
 
 4.  **Inicializar Base de Datos:**
